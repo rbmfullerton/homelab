@@ -46,6 +46,12 @@ variable "pihole" {
   default     = "pihole"
 }
 
+variable "comfyui" {
+  description = "App name"
+  type        = string
+  default     = "comfyui"
+}
+
 variable "pihole2" {
   description = "App name"
   type        = string

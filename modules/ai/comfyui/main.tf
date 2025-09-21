@@ -1,6 +1,6 @@
-﻿resource "kubernetes_persistent_volume" "sd_local_pv" {
+﻿resource "kubernetes_persistent_volume" "comfyui_local_pv" {
   metadata {
-    name = "sd-local-pv"
+    name = "comfyui-local-pv"
   }
   spec {
     capacity = {
@@ -11,7 +11,7 @@
     storage_class_name = "local-storage"
     persistent_volume_source {
       host_path {
-        path = "/mnt/stable-diffusion-data"
+        path = "/mnt/comfyui-data"
         type = "DirectoryOrCreate"
       }
     }
@@ -29,9 +29,9 @@
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "sd_pvc" {
+resource "kubernetes_persistent_volume_claim" "comfyui_pvc" {
   metadata {
-    name = "sd-pvc"
+    name = "comfyui-pvc"
     namespace = "ai"
   }
   spec {
@@ -42,26 +42,26 @@ resource "kubernetes_persistent_volume_claim" "sd_pvc" {
       }
     }
     storage_class_name = "local-storage"
-    volume_name = "sd-local-pv"
+    volume_name = "comfyui-local-pv"
   }
 }
 
-resource "kubernetes_deployment" "stable_diffusion_webui" {
+resource "kubernetes_deployment" "comfyui-nvidia" {
   metadata {
-    name = "stable-diffusion-webui"
+    name = "comfyui-nvidia"
     namespace = "ai"
   }
   spec {
-    replicas = 0
+    replicas = 1
     selector {
       match_labels = {
-        app = "stable-diffusion-webui"
+        app = "comfyui-nvidia"
       }
     }
     template {
       metadata {
         labels = {
-          app = "stable-diffusion-webui"
+          app = "comfyui-nvidia"
         }
       }
       spec {
@@ -70,10 +70,10 @@ resource "kubernetes_deployment" "stable_diffusion_webui" {
           gpu = "true"
         }
         container {
-          name = "stable-diffusion-webui"
-          image = "ghcr.io/neggles/sd-webui-docker:latest"
+          name = "comfyui-nvidia"
+          image = "mmartial/comfyui-nvidia-docker:latest"
           port {
-            container_port = 7860
+            container_port = 8188
           }
           resources {
             limits = {
@@ -81,22 +81,44 @@ resource "kubernetes_deployment" "stable_diffusion_webui" {
             }
           }
           volume_mount {
-            name = "sd-data"
-            mount_path = "/data"
+            name = "comfyui-data"
+            mount_path = "/basedir"
+          }
+          volume_mount {
+            name = "comfyui-data"
+            mount_path = "/comfy/mnt"
+          }
+
+          env {
+            name = "WANTED_UID"
+            value = "0"
           }
           env {
-            name = "CLI_ARGS"
-            value = "--api"
+            name = "WANTED_GID"
+            value = "0"
           }
           env {
-            name = "SD_WEBUI_VARIANT"
-            value = "latest"
+            name = "BASE_DIRECTORY"
+            value = "/basedir"
+          }
+          env {
+            name = "SECURITY_LEVEL"
+            value = "normal"
+          }
+          env {
+            name = "NVIDIA_VISIBLE_DEVICES"
+            value = "all"
+          }
+
+          env {
+            name = "NVIDIA_DRIVER_CAPABILITIES"
+            value = "all"
           }
         }
         volume {
-          name = "sd-data"
+          name = "comfyui-data"
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim.sd_pvc.metadata[0].name
+            claim_name = kubernetes_persistent_volume_claim.comfyui_pvc.metadata[0].name
           }
         }
       }
@@ -104,18 +126,18 @@ resource "kubernetes_deployment" "stable_diffusion_webui" {
   }
 }
 
-resource "kubernetes_service" "stable_diffusion_webui" {
+resource "kubernetes_service" "comfyui-nvidia" {
   metadata {
-    name = "stable-diffusion-webui"
+    name = "comfyui-nvidia"
     namespace = "ai"
   }
   spec {
     selector = {
-      app = "stable-diffusion-webui"
+      app = "comfyui-nvidia"
     }
     port {
-      port = 7860
-      target_port = 7860
+      port = 8188
+      target_port = 8188
     }
     type = "ClusterIP"
   }

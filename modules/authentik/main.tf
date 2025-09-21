@@ -32,7 +32,8 @@ resource "authentik_outpost" "outpost" {
     module.homarr.proxy_id,
     module.openwebui.proxy_id,
     module.pihole.proxy_id,
-    module.pihole2.proxy_id
+    module.pihole2.proxy_id,
+    module.comfyui.proxy_id
   ]
   service_connection = authentik_service_connection_kubernetes.local.id
 }
@@ -49,7 +50,7 @@ module uptimekuma {
   app_slug = var.app_name_uptimekuma
   app_external_host = "https://${var.app_name_uptimekuma}.hozzlab.ca"
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
-  token_validity = "minutes=10"
+  token_validity = "hours=10"
 }
 
 module homarr {
@@ -58,7 +59,7 @@ module homarr {
   app_slug = var.app_name_homarr
   app_external_host = "https://${var.app_name_homarr}.hozzlab.ca"
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
-  token_validity = "minutes=10"
+  token_validity = "hours=10"
 }
 
 module openwebui {
@@ -76,7 +77,7 @@ module pihole {
   app_slug = var.app_name_pihole
   app_external_host = "https://${var.app_name_pihole}.hozzlab.ca"
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
-  token_validity = "minutes=10"
+  token_validity = "hours=10"
 }
 
 module pihole2 {
@@ -85,5 +86,15 @@ module pihole2 {
   app_slug = var.app_name_pihole2
   app_external_host = "https://${var.app_name_pihole2}.hozzlab.ca"
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
-  token_validity = "minutes=10"
+  token_validity = "hours=10"
 }
+
+module comfyui {
+  source = "./modules/forwardauth_bundle"
+  app_name = var.app_name_comfyui
+  app_slug = var.app_name_comfyui
+  app_external_host = "https://${var.app_name_comfyui}.hozzlab.ca"
+  require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
+  token_validity = "hours=10"
+}
+

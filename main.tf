@@ -5,6 +5,7 @@
   app_name_pihole2 = var.pihole2
   app_name_homarr = var.homarr
   app_name_openwebui = var.openwebui
+  app_name_comfyui = var.comfyui
   # optionally, pass variables expected by your module here
 }
 
@@ -16,16 +17,17 @@ module "uptimekuma" {
 
 module "pihole" {
   source = "./modules/pihole"
-  app_name_uptimekuma = var.uptimekuma
-  app_name_pihole = var.pihole
-  app_name_pihole2 = var.pihole2
-  app_name_homarr = var.homarr
-  app_name_openwebui = var.openwebui
   providers = {
     pihole.pihole1 = pihole.pihole1
     pihole.pihole2 = pihole.pihole2
     pihole.pihole3 = pihole.pihole3
   }
+  app_name_uptimekuma = var.uptimekuma
+  app_name_pihole = var.pihole
+  app_name_pihole2 = var.pihole2
+  app_name_homarr = var.homarr
+  app_name_openwebui = var.openwebui
+  app_name_comfyui = var.comfyui
   # optionally, pass variables expected by your module here
 }
 
@@ -45,6 +47,10 @@ module "ollama" {
 
 module "automatic1111" {
   source = "./modules/ai/automatic1111"
+}
+
+module "comfyui" {
+  source = "./modules/ai/comfyui"
 }
 
 module "openwebui" {
