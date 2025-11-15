@@ -18,6 +18,12 @@ variable "app_name_homarr" {
   type        = string
 }
 
+variable "app_name_jackett" {
+  description = "The name of the app/deployment"
+  type        = string
+}
+
+
 variable "app_name_openwebui" {
   description = "The name of the app/deployment"
   type        = string

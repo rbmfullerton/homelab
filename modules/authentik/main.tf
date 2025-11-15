@@ -33,6 +33,7 @@ resource "authentik_outpost" "outpost" {
     module.openwebui.proxy_id,
     module.pihole.proxy_id,
     module.pihole2.proxy_id,
+    module.jackett.proxy_id,
     module.comfyui.proxy_id
   ]
   service_connection = authentik_service_connection_kubernetes.local.id
@@ -61,6 +62,16 @@ module homarr {
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
   token_validity = "hours=10"
 }
+
+module jackett {
+  source = "./modules/forwardauth_bundle"
+  app_name = var.app_name_jackett
+  app_slug = var.app_name_jackett
+  app_external_host = "https://${var.app_name_jackett}.hozzlab.ca"
+  require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
+  token_validity = "hours=10"
+}
+
 
 module openwebui {
   source = "./modules/forwardauth_bundle"

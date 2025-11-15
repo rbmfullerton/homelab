@@ -4,6 +4,7 @@
   app_name_pihole = var.pihole
   app_name_pihole2 = var.pihole2
   app_name_homarr = var.homarr
+  app_name_jackett = var.jackett
   app_name_openwebui = var.openwebui
   app_name_comfyui = var.comfyui
   # optionally, pass variables expected by your module here
@@ -26,6 +27,7 @@ module "pihole" {
   app_name_pihole = var.pihole
   app_name_pihole2 = var.pihole2
   app_name_homarr = var.homarr
+  app_name_jackett = var.jackett
   app_name_openwebui = var.openwebui
   app_name_comfyui = var.comfyui
   # optionally, pass variables expected by your module here
@@ -35,6 +37,12 @@ module "homarr" {
   source = "./modules/homarr"
   app_name = var.homarr
   envs = var.homarr_envs
+}
+
+module "jackett" {
+  source = "./modules/jackett"
+  app_name = var.jackett
+  envs = var.jackett_envs
 }
 
 module "ai" {

@@ -64,6 +64,13 @@ variable "homarr" {
   default     = "homarr"
 }
 
+variable "jackett" {
+  description = "App name"
+  type        = string
+  default     = "jackett"
+}
+
+
 variable "homarr_envs" {
   description = "Environment variables for Homarr container"
   sensitive   = true
@@ -73,6 +80,17 @@ variable "homarr_envs" {
   }))
   default = []
 }
+
+variable "jackett_envs" {
+  description = "Environment variables for Homarr container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
+
 
 variable "openwebui" {
   description = "App name"
