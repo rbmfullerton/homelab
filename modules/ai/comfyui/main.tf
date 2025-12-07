@@ -71,7 +71,7 @@ resource "kubernetes_deployment" "comfyui-nvidia" {
         }
         container {
           name = "comfyui-nvidia"
-          image = "mmartial/comfyui-nvidia-docker:ubuntu22_cuda12.3.2-20250116"
+          image = "mmartial/comfyui-nvidia-docker:ubuntu24_cuda12.6.3-latest"
           port {
             container_port = 8188
           }
@@ -109,7 +109,6 @@ resource "kubernetes_deployment" "comfyui-nvidia" {
             name = "NVIDIA_VISIBLE_DEVICES"
             value = "all"
           }
-
           env {
             name = "NVIDIA_DRIVER_CAPABILITIES"
             value = "all"
