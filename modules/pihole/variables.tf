@@ -33,3 +33,8 @@ variable "app_name_comfyui" {
   description = "The name of the app/deployment"
   type        = string
 }
+
+variable "app_name_pterodactyl_panel" {
+  description = "The name of the app/deployment"
+  type        = string
+}

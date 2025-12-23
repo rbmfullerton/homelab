@@ -44,11 +44,28 @@ resource "kubernetes_deployment" "deployment" {
           name            = var.app_name
           port {
             container_port  = var.port
-            name              = "ui"
+            name              = "ui80"
+            protocol          = var.protocol
+          }
+          port {
+            container_port  = var.port2
+            name              = "ui443"
             protocol          = var.protocol
           }
           volume_mount {
               mount_path = var.mount_path
+              name       = "${var.app_name}-data"
+          }
+          volume_mount {
+              mount_path = var.mount_path2
+              name       = "${var.app_name}-data"
+          }
+          volume_mount {
+              mount_path = var.mount_path3
+              name       = "${var.app_name}-data"
+          }
+          volume_mount {
+              mount_path = var.mount_path4
               name       = "${var.app_name}-data"
           }
           dynamic "env" {

@@ -44,7 +44,7 @@ resource "kubernetes_deployment" "deployment" {
           name            = var.app_name
           port {
             container_port  = var.port
-            name              = "ui"
+            name              = "ui443"
             protocol          = var.protocol
           }
           volume_mount {

@@ -15,3 +15,9 @@ resource "kubernetes_namespace" "ai" {
     name = "ai"
   }
 }
+
+resource "kubernetes_namespace" "pterodactyl" {
+  metadata {
+    name = "pterodactyl"
+  }
+}

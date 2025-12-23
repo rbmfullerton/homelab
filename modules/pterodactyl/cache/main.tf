@@ -1,21 +1,4 @@
-﻿#PVC
-resource "kubernetes_persistent_volume_claim" "pvclaim" {
-  metadata {
-    name      = "${var.app_name}-claim"
-    namespace = var.namespace
-  }
-  spec {
-    access_modes = ["ReadWriteOnce"]
-    resources {
-      requests = {
-        storage = var.storage_size
-      }
-    }
-    storage_class_name = var.storage_class
-  }
-}
-
-# Deployment
+﻿# Deployment
 resource "kubernetes_deployment" "deployment" {
   metadata {
     name      = var.app_name
@@ -44,25 +27,8 @@ resource "kubernetes_deployment" "deployment" {
           name            = var.app_name
           port {
             container_port  = var.port
-            name              = "ui"
+            name              = "port"
             protocol          = var.protocol
-          }
-          volume_mount {
-              mount_path = var.mount_path
-              name       = "${var.app_name}-data"
-          }
-          dynamic "env" {
-            for_each = var.envs
-            content {
-              name  = env.value.name
-              value = env.value.value
-            }
-          }
-        }
-        volume {
-          name = "${var.app_name}-data"
-          persistent_volume_claim {
-            claim_name = "${var.app_name}-claim"
           }
         }
       }
@@ -78,7 +44,7 @@ resource "kubernetes_service" "service" {
   }
   spec {
     port {
-      name       = "ui"
+      name       = "port"
       port       = var.port
       protocol   = var.protocol
       target_port = var.port

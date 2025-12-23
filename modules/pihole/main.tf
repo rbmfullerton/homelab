@@ -86,3 +86,14 @@ module comfyui {
     pihole.pihole3 = pihole.pihole3
   }
 }
+
+module pterodactyl_panel {
+  source = "./modules/local_dns"
+  domain = "${var.app_name_pterodactyl_panel}.hozzlab.ca"
+  ip = "192.168.0.122"
+  providers = {
+    pihole.pihole1 = pihole.pihole1
+    pihole.pihole2 = pihole.pihole2
+    pihole.pihole3 = pihole.pihole3
+  }
+}

@@ -30,6 +30,7 @@ module "pihole" {
   app_name_jackett = var.jackett
   app_name_openwebui = var.openwebui
   app_name_comfyui = var.comfyui
+  app_name_pterodactyl_panel = var.pterodactyl_panel
   # optionally, pass variables expected by your module here
 }
 
@@ -65,4 +66,21 @@ module "openwebui" {
   source = "./modules/ai/openwebui"
   app_name = var.openwebui
   envs = var.openwebui_envs
+}
+
+module "pterodactyl_panel" {
+  source = "./modules/pterodactyl/panel"
+  app_name = var.pterodactyl_panel
+  envs = var.pterodactyl_panel_envs
+}
+
+module "pterodactyl_database" {
+  source = "./modules/pterodactyl/database"
+  app_name = var.pterodactyl_database
+  envs = var.pterodactyl_database_envs
+}
+
+module "pterodactyl_cache" {
+  source = "./modules/pterodactyl/cache"
+  app_name = var.pterodactyl_cache
 }
