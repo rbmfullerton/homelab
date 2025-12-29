@@ -82,7 +82,7 @@ variable "homarr_envs" {
 }
 
 variable "jackett_envs" {
-  description = "Environment variables for Homarr container"
+  description = "Environment variables for Jackett container"
   sensitive   = true
   type = list(object({
     name  = string
@@ -138,6 +138,22 @@ variable "pterodactyl_panel_envs" {
 
 variable "pterodactyl_database_envs" {
   description = "Environment variables for container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
+
+variable "bazarr" {
+  description = "App name"
+  type        = string
+  default     = "bazarr"
+}
+
+variable "bazarr_envs" {
+  description = "Environment variables for Bazarr container"
   sensitive   = true
   type = list(object({
     name  = string

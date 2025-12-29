@@ -7,7 +7,12 @@
   app_name_jackett = var.jackett
   app_name_openwebui = var.openwebui
   app_name_comfyui = var.comfyui
+  app_name_bazarr = var.bazarr
   # optionally, pass variables expected by your module here
+}
+
+module "storage" {
+  source = "./modules/storage"
 }
 
 module "uptimekuma" {
@@ -30,6 +35,7 @@ module "pihole" {
   app_name_jackett = var.jackett
   app_name_openwebui = var.openwebui
   app_name_comfyui = var.comfyui
+  app_name_bazarr = var.bazarr
   app_name_pterodactyl_panel = var.pterodactyl_panel
   # optionally, pass variables expected by your module here
 }
@@ -83,4 +89,10 @@ module "pterodactyl_database" {
 module "pterodactyl_cache" {
   source = "./modules/pterodactyl/cache"
   app_name = var.pterodactyl_cache
+}
+
+module "bazarr" {
+  source = "./modules/bazarr"
+  app_name = var.bazarr
+  envs = var.bazarr_envs
 }

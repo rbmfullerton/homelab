@@ -97,3 +97,14 @@ module pterodactyl_panel {
     pihole.pihole3 = pihole.pihole3
   }
 }
+
+module bazarr {
+  source = "./modules/local_dns"
+  domain = "${var.app_name_bazarr}.hozzlab.ca"
+  ip = "192.168.0.122"
+  providers = {
+    pihole.pihole1 = pihole.pihole1
+    pihole.pihole2 = pihole.pihole2
+    pihole.pihole3 = pihole.pihole3
+  }
+}

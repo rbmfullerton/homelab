@@ -34,6 +34,7 @@ resource "authentik_outpost" "outpost" {
     module.pihole.proxy_id,
     module.pihole2.proxy_id,
     module.jackett.proxy_id,
+    module.bazarr.proxy_id,
     module.comfyui.proxy_id
   ]
   service_connection = authentik_service_connection_kubernetes.local.id
@@ -105,6 +106,15 @@ module comfyui {
   app_name = var.app_name_comfyui
   app_slug = var.app_name_comfyui
   app_external_host = "https://${var.app_name_comfyui}.hozzlab.ca"
+  require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
+  token_validity = "hours=10"
+}
+
+module bazarr {
+  source = "./modules/forwardauth_bundle"
+  app_name = var.app_name_bazarr
+  app_slug = var.app_name_bazarr
+  app_external_host = "https://${var.app_name_bazarr}.hozzlab.ca"
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
   token_validity = "hours=10"
 }
