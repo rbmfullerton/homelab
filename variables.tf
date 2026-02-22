@@ -161,3 +161,19 @@ variable "bazarr_envs" {
   }))
   default = []
 }
+
+variable "bookshelf" {
+  description = "App name"
+  type        = string
+  default     = "bookshelf"
+}
+
+variable "bookshelf_envs" {
+  description = "Environment variables for Bookshelf container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}

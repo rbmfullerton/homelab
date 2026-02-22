@@ -8,6 +8,7 @@
   app_name_openwebui = var.openwebui
   app_name_comfyui = var.comfyui
   app_name_bazarr = var.bazarr
+  app_name_bookshelf = var.bookshelf
   # optionally, pass variables expected by your module here
 }
 
@@ -36,6 +37,7 @@ module "pihole" {
   app_name_openwebui = var.openwebui
   app_name_comfyui = var.comfyui
   app_name_bazarr = var.bazarr
+  app_name_bookshelf = var.bookshelf
   app_name_pterodactyl_panel = var.pterodactyl_panel
   # optionally, pass variables expected by your module here
 }
@@ -95,4 +97,10 @@ module "bazarr" {
   source = "./modules/bazarr"
   app_name = var.bazarr
   envs = var.bazarr_envs
+}
+
+module "bookshelf" {
+  source = "./modules/bookshelf"
+  app_name = var.bookshelf
+  envs = var.bookshelf_envs
 }

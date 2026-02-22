@@ -255,3 +255,145 @@ resource "kubernetes_persistent_volume_claim" "smb-movies-internal" {
     storage_class_name = "smb-movies"
   }
 }
+
+
+
+
+
+
+
+
+
+resource "kubernetes_persistent_volume" "smb-books-internal" {
+  metadata {
+    name = "smb-books-internal"
+
+    annotations = {
+      "pv.kubernetes.io/provisioned-by" = "smb.csi.k8s.io"
+    }
+  }
+
+  spec {
+    capacity = {
+      storage = "100Gi"
+    }
+
+    access_modes                     = ["ReadWriteMany"]
+    persistent_volume_reclaim_policy = "Retain"
+    storage_class_name               = "smb-books"
+
+    mount_options = [
+      "dir_mode=0777",
+      "file_mode=0777",
+    ]
+
+    persistent_volume_source {
+      csi {
+        driver        = "smb.csi.k8s.io"
+        read_only     = false
+        volume_handle = "smb-books-internal"
+
+        volume_attributes = {
+          source = "//10.0.0.45/Books"
+        }
+
+        node_stage_secret_ref {
+          name      = "smbcreds"
+          namespace = "servarr"
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_persistent_volume_claim" "smb-books-internal" {
+  metadata {
+    name      = "smb-books-internal"
+    namespace = "servarr-internal"
+  }
+
+  spec {
+    access_modes = ["ReadWriteMany"]
+
+    resources {
+      requests = {
+        storage = "10Gi"
+      }
+    }
+
+    volume_name        = "smb-books-internal"
+    storage_class_name = "smb-books"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+resource "kubernetes_persistent_volume" "smb-downloads-internal" {
+  metadata {
+    name = "smb-downloads-internal"
+
+    annotations = {
+      "pv.kubernetes.io/provisioned-by" = "smb.csi.k8s.io"
+    }
+  }
+
+  spec {
+    capacity = {
+      storage = "100Gi"
+    }
+
+    access_modes                     = ["ReadWriteMany"]
+    persistent_volume_reclaim_policy = "Retain"
+    storage_class_name               = "smb-downloads"
+
+    mount_options = [
+      "dir_mode=0777",
+      "file_mode=0777",
+    ]
+
+    persistent_volume_source {
+      csi {
+        driver        = "smb.csi.k8s.io"
+        read_only     = false
+        volume_handle = "smb-downloads-internal"
+
+        volume_attributes = {
+          source = "//10.0.0.45/Downloads"
+        }
+
+        node_stage_secret_ref {
+          name      = "smbcreds"
+          namespace = "servarr"
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_persistent_volume_claim" "smb-downloads-internal" {
+  metadata {
+    name      = "smb-downloads-internal"
+    namespace = "servarr-internal"
+  }
+
+  spec {
+    access_modes = ["ReadWriteMany"]
+
+    resources {
+      requests = {
+        storage = "10Gi"
+      }
+    }
+
+    volume_name        = "smb-downloads-internal"
+    storage_class_name = "smb-downloads"
+  }
+}

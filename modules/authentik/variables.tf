@@ -38,3 +38,8 @@ variable "app_name_bazarr" {
   description = "The name of the app/deployment"
   type        = string
 }
+
+variable "app_name_bookshelf" {
+  description = "The name of the app/deployment"
+  type        = string
+}

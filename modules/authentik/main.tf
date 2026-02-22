@@ -35,6 +35,7 @@ resource "authentik_outpost" "outpost" {
     module.pihole2.proxy_id,
     module.jackett.proxy_id,
     module.bazarr.proxy_id,
+    module.bookshelf.proxy_id,
     module.comfyui.proxy_id
   ]
   service_connection = authentik_service_connection_kubernetes.local.id
@@ -119,3 +120,11 @@ module bazarr {
   token_validity = "hours=10"
 }
 
+module bookshelf {
+  source = "./modules/forwardauth_bundle"
+  app_name = var.app_name_bookshelf
+  app_slug = var.app_name_bookshelf
+  app_external_host = "https://${var.app_name_bookshelf}.hozzlab.ca"
+  require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
+  token_validity = "hours=10"
+}
