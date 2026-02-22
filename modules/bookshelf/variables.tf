@@ -51,6 +51,19 @@ variable "mount_path3" {
   default     = "/mnt/Downloads"
 }
 
+variable "mount_name2" {
+  description = "Mount Path for container's data"
+  type        = string
+  default     = "smb-books-internal"
+}
+
+variable "mount_name3" {
+  description = "Mount Path for container's data"
+  type        = string
+  default     = "smb-downloads-internal"
+}
+
+
 variable "port" {
   description = "Port for WebUi"
   type        = string

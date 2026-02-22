@@ -54,12 +54,12 @@ resource "kubernetes_deployment" "deployment" {
 
           volume_mount {
               mount_path = var.mount_path2
-              name       = "smb-books-internal"
+              name       = var.mount_name2
 	    }
 
           volume_mount {
               mount_path = var.mount_path3
-              name       = "smb-downloads-internal"
+              name       = var.mount_name3
           }
 
           dynamic "env" {
