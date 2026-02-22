@@ -21,3 +21,21 @@ resource "kubernetes_namespace" "pterodactyl" {
     name = "pterodactyl"
   }
 }
+
+resource "kubernetes_namespace" "cronjobs" {
+  metadata {
+    name = "cronjobs"
+  }
+}
+
+resource "kubernetes_namespace" "pihole" {
+  metadata {
+    name = "pihole"
+  }
+}
+
+resource "kubernetes_namespace" "pihole2" {
+  metadata {
+    name = "pihole2"
+  }
+}

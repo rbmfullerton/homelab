@@ -18,7 +18,7 @@ variable "app_split" {
 variable "namespace" {
   description = "Kubernetes namespace for app"
   type        = string
-  default     = "pihole"
+  default     = "pihole2"
 }
 
 variable "storage_size" {
@@ -126,7 +126,7 @@ variable "envs2" {
 variable "load_balancer_ip" {
   description = "For DNS"
   type        = string
-  default     = "192.168.0.155"
+  default     = "192.168.0.160"
 }
 
 

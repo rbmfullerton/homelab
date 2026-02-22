@@ -1,5 +1,5 @@
 ﻿module "authentik" {
-  source = "./modules/authentik"
+  source = "./modules/authentik-config"
   app_name_uptimekuma = var.uptimekuma
   app_name_pihole = var.pihole
   app_name_pihole2 = var.pihole2
@@ -27,7 +27,7 @@ module "uptimekuma" {
 }
 
 module "pihole" {
-  source = "./modules/pihole"
+  source = "./modules/pihole-config"
   providers = {
     pihole.pihole1 = pihole.pihole1
     pihole.pihole2 = pihole.pihole2
@@ -111,4 +111,23 @@ module "bookshelf" {
   source = "./modules/bookshelf"
   app_name = var.bookshelf
   envs = var.bookshelf_envs
+}
+
+module "cronjobs" {
+  source = "./modules/cronjobs"
+  sonarr_api_key = var.sonarr_api_key
+}
+
+module "pihole-app" {
+  source = "./modules/pihole"
+  app_name = var.pihole
+  envs = var.pihole_envs
+  envs2 = var.pihole_envs2
+}
+
+module "pihole2-app" {
+  source = "./modules/pihole2"
+  app_name = var.pihole2
+  envs = var.pihole2_envs
+  envs2 = var.pihole2_envs2
 }

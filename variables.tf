@@ -201,3 +201,50 @@ variable "radarr" {
   type        = string
   default     = "radarr"
 }
+
+variable "sonarr_api_key" {
+  description = "sonarr api key"
+  type        = string
+  sensitive   = true
+}
+
+variable "pihole_envs" {
+  description = "Environment variables for pihole container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
+
+variable "pihole_envs2" {
+  description = "More environment variables for pihole container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
+
+variable "pihole2_envs" {
+  description = "Environment variables for pihole2 container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
+
+variable "pihole2_envs2" {
+  description = "More environment variables for pihole2 container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
+
