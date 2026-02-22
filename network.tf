@@ -76,16 +76,16 @@ resource "kubernetes_network_policy" "servarr_egress_to_internal" {
   }
 }
 
-resource "kubernetes_network_policy" "overseerr_egress_allow" {
+resource "kubernetes_network_policy" "seerr_egress_allow" {
   metadata {
-    name      = "overseerr-egress-allow"
+    name      = "seerr-egress-allow"
     namespace = "servarr"
   }
 
   spec {
     pod_selector {
       match_labels = {
-        app = "overseerr"
+        app = "seerr"
       }
     }
 

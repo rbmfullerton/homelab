@@ -45,6 +45,7 @@ module "pihole" {
   app_name_traefik = var.traefik
   app_name_sonarr = var.sonarr
   app_name_radarr = var.radarr
+  app_name_seerr = var.seerr
   app_name_request = var.request
   app_name_pterodactyl_panel = var.pterodactyl_panel
   # optionally, pass variables expected by your module here
@@ -131,3 +132,22 @@ module "pihole2-app" {
   envs = var.pihole2_envs
   envs2 = var.pihole2_envs2
 }
+
+module "seerr" {
+  source = "./modules/seerr"
+  app_name = var.seerr
+  envs = var.seerr_envs
+}
+
+module "sonarr" {
+  source = "./modules/sonarr"
+  app_name = var.sonarr
+  envs = var.sonarr_envs
+}
+
+module "radarr" {
+  source = "./modules/radarr"
+  app_name = var.radarr
+  envs = var.radarr_envs
+}
+

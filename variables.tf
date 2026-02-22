@@ -190,18 +190,6 @@ variable "traefik" {
   default     = "traefik2"
 }
 
-variable "sonarr" {
-  description = "App name"
-  type        = string
-  default     = "sonarr"
-}
-
-variable "radarr" {
-  description = "App name"
-  type        = string
-  default     = "radarr"
-}
-
 variable "sonarr_api_key" {
   description = "sonarr api key"
   type        = string
@@ -247,4 +235,54 @@ variable "pihole2_envs2" {
   }))
   default = []
 }
+
+variable "seerr" {
+  description = "App name"
+  type        = string
+  default     = "seerr"
+}
+
+
+variable "seerr_envs" {
+  description = "Environment variables for Homarr container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
+
+variable "sonarr" {
+  description = "App name"
+  type        = string
+  default     = "sonarr"
+}
+
+variable "sonarr_envs" {
+  description = "Environment variables for Bazarr container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
+
+variable "radarr" {
+  description = "App name"
+  type        = string
+  default     = "radarr"
+}
+
+variable "radarr_envs" {
+  description = "Environment variables for Bazarr container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
+
 

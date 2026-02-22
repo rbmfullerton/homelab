@@ -39,3 +39,9 @@ resource "kubernetes_namespace" "pihole2" {
     name = "pihole2"
   }
 }
+
+resource "kubernetes_namespace" "servarr" {
+  metadata {
+    name = "servarr"
+  }
+}

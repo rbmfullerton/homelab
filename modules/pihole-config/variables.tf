@@ -68,3 +68,9 @@ variable "app_name_radarr" {
   description = "The name of the app/deployment"
   type        = string
 }
+
+variable "app_name_seerr" {
+  description = "The name of the app/deployment"
+  type        = string
+}
+

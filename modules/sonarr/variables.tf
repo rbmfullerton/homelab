@@ -6,13 +6,13 @@
 variable "namespace" {
   description = "Kubernetes namespace for app"
   type        = string
-  default     = "servarr-internal"
+  default     = "servarr"
 }
 
 variable "storage_size" {
   description = "Storage required for persistent volume"
   type        = string
-  default     = "1Gi"
+  default     = "10Gi"
 }
 
 variable "storage_class" {
@@ -24,13 +24,13 @@ variable "storage_class" {
 variable "image" {
   description = "Image for container"
   type        = string
-  default     = "lscr.io/linuxserver/bazarr"
+  default     = "lscr.io/linuxserver/sonarr"
 }
 
 variable "image_version" {
   description = "Version of container image"
   type        = string
-  default     = "1.5.3"
+  default     = "4.0.16"
 }
 
 variable "mount_path" {
@@ -48,26 +48,26 @@ variable "mount_path2" {
 variable "mount_path3" {
   description = "Mount Path for container's data"
   type        = string
-  default     = "/mnt/Movies"
+  default     = "/mnt/Downloads"
 }
 
 variable "mount_name2" {
   description = "Mount Path for container's data"
   type        = string
-  default     = "smb-tvshows-internal"
+  default     = "smb-tvshows"
 }
 
 variable "mount_name3" {
   description = "Mount Path for container's data"
   type        = string
-  default     = "smb-movies-internal"
+  default     = "smb-downloads"
 }
 
 
 variable "port" {
   description = "Port for WebUi"
   type        = string
-  default     = "6767"
+  default     = "8989"
 }
 
 variable "protocol" {

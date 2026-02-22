@@ -50,18 +50,7 @@ resource "kubernetes_deployment" "deployment" {
           volume_mount {
               mount_path = var.mount_path
               name       = "${var.app_name}-data"
-	    }
-
-          volume_mount {
-              mount_path = var.mount_path2
-              name       = var.mount_name2
-	    }
-
-          volume_mount {
-              mount_path = var.mount_path3
-              name       = var.mount_name3
           }
-
           dynamic "env" {
             for_each = var.envs
             content {
@@ -74,18 +63,6 @@ resource "kubernetes_deployment" "deployment" {
           name = "${var.app_name}-data"
           persistent_volume_claim {
             claim_name = "${var.app_name}-claim"
-          }
-        }
-        volume {
-          name = var.mount_name2
-          persistent_volume_claim {
-            claim_name = var.mount_name2
-          }
-        }
-        volume {
-          name = var.mount_name3
-          persistent_volume_claim {
-            claim_name = var.mount_name3
           }
         }
       }
