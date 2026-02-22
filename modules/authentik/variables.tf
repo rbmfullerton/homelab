@@ -43,3 +43,23 @@ variable "app_name_bookshelf" {
   description = "The name of the app/deployment"
   type        = string
 }
+
+variable "app_name_request" {
+  description = "The name of the app/deployment"
+  type        = string
+}
+
+variable "app_name_traefik" {
+  description = "The name of the app/deployment"
+  type        = string
+}
+
+variable "app_name_sonarr" {
+  description = "The name of the app/deployment"
+  type        = string
+}
+
+variable "app_name_radarr" {
+  description = "The name of the app/deployment"
+  type        = string
+}

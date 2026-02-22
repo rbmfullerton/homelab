@@ -9,6 +9,10 @@
   app_name_comfyui = var.comfyui
   app_name_bazarr = var.bazarr
   app_name_bookshelf = var.bookshelf
+  app_name_traefik = var.traefik
+  app_name_sonarr = var.sonarr
+  app_name_radarr = var.radarr
+  app_name_request = var.request
   # optionally, pass variables expected by your module here
 }
 
@@ -38,6 +42,10 @@ module "pihole" {
   app_name_comfyui = var.comfyui
   app_name_bazarr = var.bazarr
   app_name_bookshelf = var.bookshelf
+  app_name_traefik = var.traefik
+  app_name_sonarr = var.sonarr
+  app_name_radarr = var.radarr
+  app_name_request = var.request
   app_name_pterodactyl_panel = var.pterodactyl_panel
   # optionally, pass variables expected by your module here
 }

@@ -119,3 +119,47 @@ module bookshelf {
     pihole.pihole3 = pihole.pihole3
   }
 }
+
+module request {
+  source = "./modules/local_dns"
+  domain = "${var.app_name_request}.hozzlab.ca"
+  ip = "192.168.0.122"
+  providers = {
+    pihole.pihole1 = pihole.pihole1
+    pihole.pihole2 = pihole.pihole2
+    pihole.pihole3 = pihole.pihole3
+  }
+}
+
+module traefik {
+  source = "./modules/local_dns"
+  domain = "${var.app_name_traefik}.hozzlab.ca"
+  ip = "192.168.0.122"
+  providers = {
+    pihole.pihole1 = pihole.pihole1
+    pihole.pihole2 = pihole.pihole2
+    pihole.pihole3 = pihole.pihole3
+  }
+}
+
+module sonarr {
+  source = "./modules/local_dns"
+  domain = "${var.app_name_sonarr}.hozzlab.ca"
+  ip = "192.168.0.122"
+  providers = {
+    pihole.pihole1 = pihole.pihole1
+    pihole.pihole2 = pihole.pihole2
+    pihole.pihole3 = pihole.pihole3
+  }
+}
+
+module radarr {
+  source = "./modules/local_dns"
+  domain = "${var.app_name_radarr}.hozzlab.ca"
+  ip = "192.168.0.122"
+  providers = {
+    pihole.pihole1 = pihole.pihole1
+    pihole.pihole2 = pihole.pihole2
+    pihole.pihole3 = pihole.pihole3
+  }
+}

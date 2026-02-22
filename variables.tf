@@ -177,3 +177,27 @@ variable "bookshelf_envs" {
   }))
   default = []
 }
+
+variable "request" {
+  description = "App name"
+  type        = string
+  default     = "request"
+}
+
+variable "traefik" {
+  description = "App name"
+  type        = string
+  default     = "traefik2"
+}
+
+variable "sonarr" {
+  description = "App name"
+  type        = string
+  default     = "sonarr"
+}
+
+variable "radarr" {
+  description = "App name"
+  type        = string
+  default     = "radarr"
+}
