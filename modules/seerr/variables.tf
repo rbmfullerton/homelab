@@ -24,13 +24,13 @@ variable "storage_class" {
 variable "image" {
   description = "Image for container"
   type        = string
-  default     = "sctx/overseerr"
+  default     = "ghcr.io/seerr-team/seerr"
 }
 
 variable "image_version" {
   description = "Version of container image"
   type        = string
-  default     = "1.35.0"
+  default     = "v3.0.1"
 }
 
 variable "mount_path" {
