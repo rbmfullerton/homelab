@@ -12,6 +12,10 @@
       source  = "ryanwholey/pihole"
       version = "2.0.0-beta.1"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.0"
+    }
   }
 }
 
@@ -41,4 +45,10 @@ provider "pihole" {
   alias     = "pihole3"
   url       = "http://192.168.0.45:20720"
   password = var.pihole3_api_token
+}
+
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
 }

@@ -285,4 +285,15 @@ variable "radarr_envs" {
   default = []
 }
 
+variable "authentik_secret_key" {
+  description = "Authentik secret key"
+  type        = string
+  sensitive   = true
+}
+
+variable "authentik_postgresql_password" {
+  description = "Authentik postgresql password"
+  type        = string
+  sensitive   = true
+}
 

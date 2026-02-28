@@ -45,3 +45,9 @@ resource "kubernetes_namespace" "servarr" {
     name = "servarr"
   }
 }
+
+resource "kubernetes_namespace" "authentik" {
+  metadata {
+    name = "authentik"
+  }
+}
