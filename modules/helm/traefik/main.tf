@@ -4,7 +4,6 @@
   }
 }
 
-# Helm release resource for deploying Authentik
 resource "helm_release" "deployment" {
   name       = var.app_name
   namespace  = var.namespace

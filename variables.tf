@@ -316,4 +316,9 @@ variable "traefik-dashboard-auth" {
   sensitive   = true
 }
 
+variable "cloudflare-token" {
+  description = "Cloudflair api token"
+  type        = string
+  sensitive   = true
+}
 

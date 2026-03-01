@@ -171,3 +171,8 @@ module "traefik-helm" {
   traefik-dashboard-auth = var.traefik-dashboard-auth
 }
 
+module "cert-manager-helm" {
+  source = "./modules/helm/cert-manager"
+  cloudflare-token = var.cloudflare-token
+}
+

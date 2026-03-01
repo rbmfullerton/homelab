@@ -26,7 +26,13 @@ resource "kubernetes_deployment" "deployment" {
       "app.kubernetes.io/instance" = var.app_name
     }
   }
-
+  lifecycle {
+    ignore_changes = [
+      # ignore for Rancher Deployment annotations
+      metadata[0].annotations["field.cattle.io/publicEndpoints"],
+      spec[0].template[0].metadata[0].annotations["field.cattle.io/publicEndpoints"],
+    ]
+  }
   spec {
     replicas = 1
     selector {
@@ -148,6 +154,14 @@ resource "kubernetes_service" "service" {
     labels = {
       app = var.app_name
     }
+  }
+  lifecycle {
+    ignore_changes = [
+      # ignores for Rancher and LoadBalancer IP managers
+      metadata[0].annotations["field.cattle.io/publicEndpoints"],
+      metadata[0].annotations["kube-vip.io/loadbalancerIPs"],
+      metadata[0].annotations["metallb.universe.tf/ip-allocated-from-pool"],
+    ]
   }
   spec {
     port {
