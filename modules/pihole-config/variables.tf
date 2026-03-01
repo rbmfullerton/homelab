@@ -78,3 +78,8 @@ variable "app_name_authentik" {
   description = "The name of the app/deployment"
   type        = string
 }
+
+variable "app_name_rancher" {
+  description = "The name of the app/deployment"
+  type        = string
+}

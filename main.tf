@@ -49,6 +49,7 @@ module "pihole" {
   app_name_seerr = var.seerr
   app_name_request = var.request
   app_name_authentik = var.authentik
+  app_name_rancher = var.rancher
   app_name_pterodactyl_panel = var.pterodactyl_panel
   # optionally, pass variables expected by your module here
 }
@@ -159,3 +160,7 @@ module "authentik-helm" {
   authentik_postgresql_password = var.authentik_postgresql_password
 }
 
+module "rancher-helm" {
+  source = "./modules/helm/rancher"
+  app_name = var.rancher
+}

@@ -281,6 +281,12 @@ variable "authentik" {
   default     = "authentik"
 }
 
+variable "rancher" {
+  description = "App name"
+  type        = string
+  default     = "rancher"
+}
+
 variable "radarr_envs" {
   description = "Environment variables for Bazarr container"
   sensitive   = true
