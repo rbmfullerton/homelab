@@ -1,4 +1,4 @@
-resource "kubernetes_network_policy" "allow_servarr_internet_and_dns_jackett_egress_only" {
+﻿resource "kubernetes_network_policy" "allow_servarr_internet_and_dns_jackett_egress_only" {
   metadata {
     name      = "allow-internet-and-dns-jackett-egress-only"
     namespace = "servarr"

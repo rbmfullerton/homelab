@@ -1,4 +1,4 @@
-variable "authentik_secret_key" {
+﻿variable "authentik_secret_key" {
   description = "Secret key for Authentik"
   type        = string
   sensitive   = true

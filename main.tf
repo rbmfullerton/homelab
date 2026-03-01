@@ -48,6 +48,7 @@ module "pihole" {
   app_name_radarr = var.radarr
   app_name_seerr = var.seerr
   app_name_request = var.request
+  app_name_authentik = var.authentik
   app_name_pterodactyl_panel = var.pterodactyl_panel
   # optionally, pass variables expected by your module here
 }
