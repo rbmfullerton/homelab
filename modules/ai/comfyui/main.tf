@@ -58,6 +58,13 @@ resource "kubernetes_deployment" "comfyui-nvidia" {
         app = "comfyui-nvidia"
       }
     }
+    strategy {
+      type = "RollingUpdate"
+      rolling_update {
+        max_unavailable = "1"  # Allows one pod to be unavailable during the update
+        max_surge       = "0"  # Ensures no new pods are created until the old pod is removed
+      }
+    }
     template {
       metadata {
         labels = {
@@ -71,7 +78,7 @@ resource "kubernetes_deployment" "comfyui-nvidia" {
         }
         container {
           name = "comfyui-nvidia"
-          image = "mmartial/comfyui-nvidia-docker:ubuntu24_cuda12.6.3-latest"
+          image = "mmartial/comfyui-nvidia-docker:ubuntu24_cuda12.6.3-20251228"
           port {
             container_port = 8188
           }

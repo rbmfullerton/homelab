@@ -60,6 +60,13 @@ resource "kubernetes_deployment" "ollama" {
         app = "ollama"
       }
     }
+    strategy {
+      type = "RollingUpdate"
+      rolling_update {
+        max_unavailable = "1"  # Allows one pod to be unavailable during the update
+        max_surge       = "0"  # Ensures no new pods are created until the old pod is removed
+      }
+    }
     template {
       metadata {
         labels = {
@@ -73,7 +80,7 @@ resource "kubernetes_deployment" "ollama" {
         }
         container {
           name             = "ollama"
-          image            = "ollama/ollama:0.13.1"
+          image            = "ollama/ollama:0.17.5"
           port {
             container_port = 11434
           }

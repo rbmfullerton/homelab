@@ -48,13 +48,13 @@ variable "image2" {
 variable "image_version" {
   description = "Version of container image"
   type        = string
-  default     = "2025.11.1"
+  default     = "2026.02.0"
 }
 
 variable "image_version2" {
   description = "Version of container image"
   type        = string
-  default     = "v2025.11.1"
+  default     = "v2026.1.2"
 }
 
 variable "mount_path" {
