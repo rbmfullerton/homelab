@@ -184,12 +184,6 @@ variable "request" {
   default     = "request"
 }
 
-variable "traefik" {
-  description = "App name"
-  type        = string
-  default     = "traefik2"
-}
-
 variable "sonarr_api_key" {
   description = "sonarr api key"
   type        = string
@@ -287,6 +281,13 @@ variable "rancher" {
   default     = "rancher"
 }
 
+variable "traefik" {
+  description = "App name"
+  type        = string
+  default     = "traefik"
+}
+
+
 variable "radarr_envs" {
   description = "Environment variables for Bazarr container"
   sensitive   = true
@@ -308,4 +309,11 @@ variable "authentik_postgresql_password" {
   type        = string
   sensitive   = true
 }
+
+variable "traefik-dashboard-auth" {
+  description = "traefik dashboard secret"
+  type        = string
+  sensitive   = true
+}
+
 

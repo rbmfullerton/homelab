@@ -51,3 +51,9 @@ resource "kubernetes_namespace" "authentik" {
     name = "authentik"
   }
 }
+
+resource "kubernetes_namespace" "traefik" {
+  metadata {
+    name = "traefik"
+  }
+}

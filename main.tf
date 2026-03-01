@@ -164,3 +164,10 @@ module "rancher-helm" {
   source = "./modules/helm/rancher"
   app_name = var.rancher
 }
+
+module "traefik-helm" {
+  source = "./modules/helm/traefik"
+  app_name = var.traefik
+  traefik-dashboard-auth = var.traefik-dashboard-auth
+}
+
