@@ -14,7 +14,6 @@
   app_name_radarr = var.radarr
   app_name_request = var.request
   # optionally, pass variables expected by your module here
-  depends_on = [module.authentik-helm]
 }
 
 module "storage" {
@@ -156,6 +155,7 @@ module "radarr" {
 
 module "authentik-helm" {
   source = "./modules/helm/authentik"
+  app_name = var.authentik
   authentik_secret_key = var.authentik_secret_key
   authentik_postgresql_password = var.authentik_postgresql_password
 }

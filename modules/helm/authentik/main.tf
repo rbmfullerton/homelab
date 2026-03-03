@@ -6,11 +6,11 @@
 
 # Helm release resource for deploying Authentik
 resource "helm_release" "authentik" {
-  name       = "authentik"
-  namespace  = "authentik"
-  repository = "https://charts.goauthentik.io"
-  chart      = "authentik"
-  version    = "2026.2.0"
+  name       = var.app_name
+  namespace  = var.namespace
+  repository = var.repo
+  chart      = var.chart
+  version    = var.ver
 
   values = [
     yamlencode({
