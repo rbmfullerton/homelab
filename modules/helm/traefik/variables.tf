@@ -19,7 +19,7 @@ variable "namespace" {
 variable "repo" {
   description = "Repository of chart"
   type        = string
-  default     = "https://helm.traefik.io/traefik"
+  default     = "https://traefik.github.io/charts"
 }
 
 variable "chart" {
