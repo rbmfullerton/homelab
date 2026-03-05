@@ -3,16 +3,25 @@
   "extends": ["config:recommended"],
   "customManagers": [
     {
-      "description": "Handle variable image/version pairs (handles image2/version2)",
+      "description": "Standard image/version pairs",
       "customType": "regex",
       "fileMatch": ["(^|/)variables\\.tf$"],
       "matchStrings": [
-        "variable\\s+\"image(?<depType>\\d*)\"\\s+{[^}]*?default\\s+=\\s+\"(?<depName>[^\"]+)\"[^}]*?}\\s+variable\\s+\"image_version\\k<depType>\"\\s+{[^}]*?default\\s+=\\s+\"(?<currentValue>[^\"]+)\""
+        "variable\\s+\"image\"\\s+{[^}]*?default\\s+=\\s+\"(?<depName>[^\"]+)\"[^}]*?}\\s+variable\\s+\"image_version\"\\s+{[^}]*?default\\s+=\\s+\"(?<currentValue>[^\"]+)\""
       ],
       "datasourceTemplate": "docker"
     },
     {
-      "description": "Handle Helm repo, chart, and ver variables",
+      "description": "Numbered image/version pairs (e.g. image2 and image_version2)",
+      "customType": "regex",
+      "fileMatch": ["(^|/)variables\\.tf$"],
+      "matchStrings": [
+        "variable\\s+\"image(?<number>\\d+)\"\\s+{[^}]*?default\\s+=\\s+\"(?<depName>[^\"]+)\"[^}]*?}\\s+variable\\s+\"image_version\\k<number>\"\\s+{[^}]*?default\\s+=\\s+\"(?<currentValue>[^\"]+)\""
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "description": "Helm repo, chart, and ver variables",
       "customType": "regex",
       "fileMatch": ["(^|/)variables\\.tf$"],
       "matchStringsStrategy": "combination",
@@ -24,7 +33,7 @@
       "datasourceTemplate": "helm"
     },
     {
-      "description": "Handle inline container images in .tf files",
+      "description": "Inline container images in .tf files",
       "customType": "regex",
       "fileMatch": ["\\.tf$"],
       "matchStrings": [
@@ -35,12 +44,12 @@
   ],
   "packageRules": [
     {
-      "description": "Universal Docker logic for all standard and Alpine/LS tags (like Sonarr, Redis, Pi-hole)",
+      "description": "Universal Docker logic",
       "matchDatasources": ["docker"],
       "versioning": "docker"
     },
     {
-      "description": "Handle 'version-' and 'hardcover-v' prefixes as static compatibility tracks",
+      "description": "Prefix-based versioning for Radarr and Bookshelf",
       "matchPackageNames": [
         "lscr.io/linuxserver/radarr",
         "ghcr.io/pennydreadful/bookshelf"
@@ -48,7 +57,7 @@
       "versioning": "regex:^(?<compatibility>.*-v?)(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:\\.(?<build>\\d+))?$"
     },
     {
-      "description": "Lock ComfyUI to its Ubuntu/CUDA environment while updating build date",
+      "description": "CUDA date-based versioning for ComfyUI",
       "matchPackageNames": ["mmartial/comfyui-nvidia-docker"],
       "versioning": "regex:^(?<compatibility>ubuntu24_cuda12\\.6\\.3-)(?<major>\\d{4})(?<minor>\\d{2})(?<patch>\\d{2})$"
     }
