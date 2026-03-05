@@ -78,7 +78,7 @@ resource "kubernetes_deployment" "comfyui-nvidia" {
         }
         container {
           name = "comfyui-nvidia"
-          image = "mmartial/comfyui-nvidia-docker:ubuntu24_cuda12.6.3-20251219"
+          image = "mmartial/comfyui-nvidia-docker:ubuntu24_cuda12.6.3-20251228"
           port {
             container_port = 8188
           }
