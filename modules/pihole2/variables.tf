@@ -39,16 +39,16 @@ variable "image" {
   default     = "pihole/pihole"
 }
 
-variable "image2" {
-  description = "Image for container"
-  type        = string
-  default     = "visibilityspots/cloudflared"
-}
-
 variable "image_version" {
   description = "Version of container image"
   type        = string
   default     = "2026.02.0"
+}
+
+variable "image2" {
+  description = "Image for container"
+  type        = string
+  default     = "visibilityspots/cloudflared"
 }
 
 variable "image_version2" {
