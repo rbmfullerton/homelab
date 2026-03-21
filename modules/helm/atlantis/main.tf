@@ -11,6 +11,22 @@ data "kubernetes_secret_v1" "atlantis_gh_key" {
   }
 }
 
+resource "kubernetes_cluster_role_binding_v1" "atlantis-admin" {
+  metadata {
+    name = "atlantis-cluster-admin"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "cluster-admin"
+  }
+  subject {
+    kind      = "ServiceAccount"
+    name      = "atlantis"
+    namespace = "atlantis"
+  }
+}
+
 # Helm release resource for deploying atlantis
 resource "helm_release" "deployment" {
   name       = var.app_name
