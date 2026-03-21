@@ -1,4 +1,12 @@
-﻿module "authentik" {
+﻿terraform {
+  backend "kubernetes" {
+    secret_suffix    = "atlantis-homelab-state"
+    namespace        = "atlantis"
+    config_path   = "~/.kube/config"
+  }
+}
+
+module "authentik" {
   source = "./modules/authentik-config"
   app_name_uptimekuma = var.uptimekuma
   app_name_pihole = var.pihole
@@ -195,5 +203,3 @@ module "atlantis-helm" {
   atlantis-githubAppSecret = var.atlantis-githubAppSecret
 
 }
-
-
