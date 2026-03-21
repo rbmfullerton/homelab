@@ -287,6 +287,11 @@ variable "traefik" {
   default     = "traefik"
 }
 
+variable "atlantis" {
+  description = "App name"
+  type        = string
+  default     = "atlantis"
+}
 
 variable "radarr_envs" {
   description = "Environment variables for Bazarr container"
@@ -321,4 +326,11 @@ variable "cloudflare-token" {
   type        = string
   sensitive   = true
 }
+
+variable "atlantis-githubAppSecret" {
+  description = "Atlantis github app secret"
+  type        = string
+  sensitive   = true
+}
+
 

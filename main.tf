@@ -49,6 +49,7 @@ module "pihole" {
   app_name_request = var.request
   app_name_authentik = var.authentik
   app_name_rancher = var.rancher
+  app_name_atlantis = var.atlantis
   app_name_pterodactyl_panel = var.pterodactyl_panel
   # optionally, pass variables expected by your module here
 }
@@ -175,4 +176,11 @@ module "cert-manager-helm" {
   source = "./modules/helm/cert-manager"
   cloudflare-token = var.cloudflare-token
 }
+
+module "atlantis-helm" {
+  source = "./modules/helm/atlantis"
+  githubAppSecret = var.atlantis-githubAppSecret
+  app_name = var.atlantis
+}
+
 
