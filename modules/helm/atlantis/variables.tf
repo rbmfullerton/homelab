@@ -56,7 +56,57 @@ variable "authentik_token" {
   sensitive = true 
 }
 
-variable "cloudflare_token" { 
+variable "cloudflare-token" { 
+  type = string
+  sensitive = true 
+}
+
+variable "authentik_host" { 
+  type = string
+  sensitive = true 
+}
+
+variable "rancher_api_token" { 
+  type = string
+  sensitive = true 
+}
+
+variable "pihole1_api_token" { 
+  type = string
+  sensitive = true 
+}
+
+variable "pihole2_api_token" { 
+  type = string
+  sensitive = true 
+}
+
+variable "pihole3_api_token" { 
+  type = string
+  sensitive = true 
+}
+
+variable "sonarr_api_key" { 
+  type = string
+  sensitive = true 
+}
+
+variable "authentik_secret_key" { 
+  type = string
+  sensitive = true 
+}
+
+variable "authentik_postgresql_password" { 
+  type = string
+  sensitive = true 
+}
+
+variable "traefik-dashboard-auth" { 
+  type = string
+  sensitive = true 
+}
+
+variable "atlantis-githubAppSecret" { 
   type = string
   sensitive = true 
 }

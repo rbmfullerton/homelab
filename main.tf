@@ -182,7 +182,18 @@ module "atlantis-helm" {
   githubAppSecret = var.atlantis-githubAppSecret
   app_name = var.atlantis
   authentik_token  = var.authentik_token
-  cloudflare_token = var.cloudflare-token
+  cloudflare-token = var.cloudflare-token
+  authentik_host = var.authentik_host
+  rancher_api_token = var.rancher_api_token
+  pihole1_api_token = var.pihole1_api_token
+  pihole2_api_token = var.pihole2_api_token
+  pihole3_api_token = var.pihole3_api_token
+  sonarr_api_key = var.sonarr_api_key
+  authentik_secret_key = var.authentik_secret_key
+  authentik_postgresql_password = var.authentik_postgresql_password
+  traefik-dashboard-auth = var.traefik-dashboard-auth
+  atlantis-githubAppSecret = var.atlantis-githubAppSecret
+
 }
 
 
