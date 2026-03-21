@@ -15,6 +15,7 @@ This repository contains my experiments with using **Terraform** to define, prov
 ## Homelab Hardware
 ![Image of Homelab hardware](Homelab.jpeg)
 
+
 ## Homelab Diagram
 ```mermaid
 flowchart TD
