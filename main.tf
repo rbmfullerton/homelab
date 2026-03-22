@@ -21,6 +21,7 @@ module "authentik" {
   app_name_sonarr = var.sonarr
   app_name_radarr = var.radarr
   app_name_request = var.request
+  app_name_atlantis = var.atlantis
   # optionally, pass variables expected by your module here
 }
 
