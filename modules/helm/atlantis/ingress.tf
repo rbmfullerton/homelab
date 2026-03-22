@@ -16,11 +16,27 @@
       "routes" = [
         {
           "kind" = "Rule"
-          "match" = "Host(`${var.app_name}.hozzlab.ca`)"
+          "match" = "Host(`${var.app_name}.hozzlab.ca`) && Path(`/events`) && Method(`POST`)"
           "middlewares" = [
             {
               "name" = "default-headers"
               "namespace" = "traefik"
+            },
+          ]
+          "services" = [
+            {
+              "name" = var.app_name
+              "port" = var.port
+            }
+          ]
+        },
+        {
+          "kind" = "Rule"
+          "match" = "Host(`${var.app_name}.hozzlab.ca`) && !(Path(`/events`) && Method(`POST`))"
+          "middlewares" = [
+            {
+              "name" = "default-headers"
+              "namespace" = "authentik"
             },
           ]
           "priority" = 10
@@ -31,6 +47,7 @@
             }
           ]
         }
+
       ]
       "tls" = {
         "secretName" = "hozzlab-tls"
