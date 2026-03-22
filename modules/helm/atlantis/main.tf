@@ -43,6 +43,14 @@ resource "helm_release" "deployment" {
     value = "rocket"
   },
   {
+    name = "environment.ATLANTIS_GH_TEAM_ALLOWLIST"
+    value = "admins:plan\\, admins:apply\\, admins:state\\, admins:import\\, admins:unlock\\, admins:approve_policies"
+  },
+  {
+    name = "orgAllowlist"
+    value = "github.com/rbmfullerton-ca/homelab*"
+  },
+  {
     name = "atlantisUrl"
     value = "https://atlantis.hozzlab.ca"
   },
