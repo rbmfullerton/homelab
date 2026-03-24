@@ -35,7 +35,7 @@ resource "helm_release" "deployment" {
     value = "--automerge"
   },
   {
-    name  = "annotations.secret\\.reloader\\.stakater\\.com/reload"
+    name  = "podTemplate.annotations.secret\\.reloader\\.stakater\\.com/reload"
     value = "atlantis-terraform-vars"
   },
   {
