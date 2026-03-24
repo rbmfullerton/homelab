@@ -51,6 +51,7 @@ resource "kubernetes_deployment_v1" "deployment" {
       metadata {
         labels = {
           app = var.app_name
+          appsplit = var.app_split
         }
       }
       spec {
