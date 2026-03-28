@@ -224,3 +224,7 @@ module "atlantis-helm" {
 module "longhorn-helm" {
   source = "./modules/helm/longhorn"
 }
+
+module "csi-smb-helm" {
+  source = "./modules/helm/csi-smb"
+}
