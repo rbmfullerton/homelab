@@ -3,6 +3,12 @@
     name = "terraform"
     force_conflicts = true
   }
+  lifecycle {
+    ignore_changes = [
+      manifest.metadata.annotations["deprecated.daemonset.template.generation"],
+      manifest.metadata.resourceVersion,
+    ]
+  }
   manifest = {
     "apiVersion" = "apps/v1"
     "kind" = "DaemonSet"
@@ -37,7 +43,7 @@
                   "value" = "false"
                 },
               ]
-              "image" = "nvcr.io/nvidia/k8s-device-plugin:v0.17.3"
+              "image" = "nvcr.io/nvidia/k8s-device-plugin:v0.19.0"
               "imagePullPolicy" = "IfNotPresent"
               "name" = "nvidia-device-plugin-ctr"
               "securityContext" = {
