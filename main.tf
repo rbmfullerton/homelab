@@ -228,3 +228,7 @@ module "longhorn-helm" {
 module "csi-smb-helm" {
   source = "./modules/helm/csi-smb"
 }
+
+module "rancher-system-upgrade-controller" {
+  source = "./modules/helm/rancher-system-upgrade-controller"
+}
