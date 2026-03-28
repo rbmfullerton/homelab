@@ -2,25 +2,34 @@
 resource "helm_release" "deployment" {
   name       = var.app_name
   namespace  = var.namespace
-  create_namespace = false
   repository = var.repo
   chart      = var.chart
   version    = var.ver
   timeout    = 900
   wait       = true
 
+  create_namespace = false
 
-  values = [
-    yamlencode({
-      defaultSettings = {
-        priorityClass = "longhorn-critical"
-        systemManagedComponentsNodeSelector = "longhorn:true"
-      }
-      persistence = {
-        defaultClass = true
-        defaultClassReplicaCount = 3
-	reclaimPolicy            = "Delete"
-      }
-    })
+  set = [
+    {
+    name = "defaultSettings.priorityClass"
+    value = "longhorn-critical"
+  },
+  {
+    name  = "defaultSettings.systemManagedComponentsNodeSelector"
+    value = "longhorn:true"
+  },
+  {
+    name  = "persistence.defaultClass"
+    value = "true"
+  },
+  {
+    name  = "persistence.defaultClassReplicaCount"
+    value = "3"
+  },
+  {
+    name  = "persistence.reclaimPolicy"
+    value = "Delete"
+  }
   ]
 }
