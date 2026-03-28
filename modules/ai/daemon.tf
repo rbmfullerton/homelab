@@ -3,6 +3,12 @@
     name = "terraform"
     force_conflicts = true
   }
+  lifecycle {
+    ignore_changes = [
+      manifest.metadata.annotations["deprecated.daemonset.template.generation"],
+      manifest.metadata.resourceVersion,
+    ]
+  }
   manifest = {
     "apiVersion" = "apps/v1"
     "kind" = "DaemonSet"
