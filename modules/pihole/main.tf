@@ -163,6 +163,7 @@ resource "kubernetes_service_v1" "service" {
       metadata[0].annotations["field.cattle.io/publicEndpoints"],
       metadata[0].annotations["kube-vip.io/loadbalancerIPs"],
       metadata[0].annotations["metallb.universe.tf/ip-allocated-from-pool"],
+      metadata[0].annotations["metallb.io/ip-allocated-from-pool"],
     ]
   }
   spec {

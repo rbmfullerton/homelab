@@ -232,3 +232,7 @@ module "csi-smb-helm" {
 module "rancher-system-upgrade-controller" {
   source = "./modules/helm/rancher-system-upgrade-controller"
 }
+
+module "metallb-helm" {
+  source = "./modules/helm/metallb"
+}
