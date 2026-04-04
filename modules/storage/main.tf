@@ -186,11 +186,6 @@ resource "kubernetes_persistent_volume_claim_v1" "smb-downloads" {
   }
 }
 
-
-
-
-
-
 #servarr-internal
 
 resource "kubernetes_persistent_volume_v1" "smb-tvshows-internal" {
@@ -438,5 +433,130 @@ resource "kubernetes_persistent_volume_claim_v1" "smb-downloads-internal" {
 
     volume_name        = "smb-downloads-internal"
     storage_class_name = "smb-downloads"
+  }
+}
+
+# BackupServer during migration
+resource "kubernetes_persistent_volume_v1" "smb-tvshows-backup" {
+  metadata {
+    name = "smb-tvshows-backup"
+
+    annotations = {
+      "pv.kubernetes.io/provisioned-by" = "smb.csi.k8s.io"
+    }
+  }
+
+  spec {
+    capacity = {
+      storage = "100Gi"
+    }
+
+    access_modes                     = ["ReadWriteMany"]
+    persistent_volume_reclaim_policy = "Retain"
+    storage_class_name               = "smb-tvshows"
+
+    mount_options = [
+      "dir_mode=0777",
+      "file_mode=0777",
+    ]
+
+    persistent_volume_source {
+      csi {
+        driver        = "smb.csi.k8s.io"
+        read_only     = false
+        volume_handle = "smb-tvshows-backup"
+
+        volume_attributes = {
+          source = "//10.0.0.48/TVShows"
+        }
+
+        node_stage_secret_ref {
+          name      = "smbcreds"
+          namespace = "servarr"
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_persistent_volume_claim_v1" "smb-tvshows-backup" {
+  metadata {
+    name      = "smb-tvshows-backup"
+    namespace = "servarr"
+  }
+
+  spec {
+    access_modes = ["ReadWriteMany"]
+
+    resources {
+      requests = {
+        storage = "10Gi"
+      }
+    }
+
+    volume_name        = "smb-tvshows-backup"
+    storage_class_name = "smb-tvshows"
+  }
+}
+
+resource "kubernetes_persistent_volume_v1" "smb-tvshows-internal-backup" {
+  metadata {
+    name = "smb-tvshows-internal-backup"
+
+    annotations = {
+      "pv.kubernetes.io/provisioned-by" = "smb.csi.k8s.io"
+    }
+  }
+
+  spec {
+    capacity = {
+      storage = "100Gi"
+    }
+
+    access_modes                     = ["ReadWriteMany"]
+    persistent_volume_reclaim_policy = "Retain"
+    storage_class_name               = "smb-tvshows"
+
+    mount_options = [
+      "dir_mode=0777",
+      "file_mode=0777",
+    ]
+
+    persistent_volume_source {
+      csi {
+        driver        = "smb.csi.k8s.io"
+        read_only     = false
+        volume_handle = "smb-tvshows-internal-backup"
+
+        volume_attributes = {
+          source = "//10.0.0.48/TVShows"
+        }
+
+        node_stage_secret_ref {
+          name      = "smbcreds"
+          namespace = "servarr"
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_persistent_volume_claim_v1" "smb-tvshows-internal-backup" {
+  metadata {
+    name      = "smb-tvshows-internal-backup"
+    namespace = "servarr-internal-backup"
+  }
+
+  spec {
+    access_modes = ["ReadWriteMany"]
+
+    resources {
+      requests = {
+        storage = "10Gi"
+      }
+    }
+
+    volume_name        = "smb-tvshows-internal-backup"
+    storage_class_name = "smb-tvshows"
   }
 }
