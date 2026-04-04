@@ -544,7 +544,7 @@ resource "kubernetes_persistent_volume_v1" "smb-tvshows-internal-backup" {
 resource "kubernetes_persistent_volume_claim_v1" "smb-tvshows-internal-backup" {
   metadata {
     name      = "smb-tvshows-internal-backup"
-    namespace = "servarr-internal-backup"
+    namespace = "servarr-internal"
   }
 
   spec {
