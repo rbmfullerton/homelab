@@ -453,7 +453,7 @@ resource "kubernetes_persistent_volume_v1" "smb-tvshows-backup" {
 
     access_modes                     = ["ReadWriteMany"]
     persistent_volume_reclaim_policy = "Retain"
-    storage_class_name               = "smb-tvshows"
+    storage_class_name               = "smb-tvshows-backup"
 
     mount_options = [
       "dir_mode=0777",
@@ -495,7 +495,7 @@ resource "kubernetes_persistent_volume_claim_v1" "smb-tvshows-backup" {
     }
 
     volume_name        = "smb-tvshows-backup"
-    storage_class_name = "smb-tvshows"
+    storage_class_name = "smb-tvshows-backup"
   }
 }
 
@@ -515,7 +515,7 @@ resource "kubernetes_persistent_volume_v1" "smb-tvshows-internal-backup" {
 
     access_modes                     = ["ReadWriteMany"]
     persistent_volume_reclaim_policy = "Retain"
-    storage_class_name               = "smb-tvshows"
+    storage_class_name               = "smb-tvshows-backup"
 
     mount_options = [
       "dir_mode=0777",
@@ -557,6 +557,6 @@ resource "kubernetes_persistent_volume_claim_v1" "smb-tvshows-internal-backup" {
     }
 
     volume_name        = "smb-tvshows-internal-backup"
-    storage_class_name = "smb-tvshows"
+    storage_class_name = "smb-tvshows-backup"
   }
 }
