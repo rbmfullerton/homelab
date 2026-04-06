@@ -54,7 +54,7 @@ variable "mount_path3" {
 variable "mount_name2" {
   description = "Mount Path for container's data"
   type        = string
-  default     = "smb-tvshows-internal-backup"
+  default     = "smb-tvshows-internal"
 }
 
 variable "mount_name3" {
