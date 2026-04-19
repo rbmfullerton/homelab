@@ -61,12 +61,15 @@ flowchart TD
         TNMainVMs
         TNbackup["TrueNAS Backup - Striped"]
         TNBackupVMs
-        TNRSync["Nightly Rsync Task"]
+        TNZFSRep["Hourly ZFS Replication"]
   end
  subgraph Wireless["Wireless"]
-        AP1["Acess Point 1 - House"]
-        AP2["Acess Point 2 - Shed"]
+        AP1["Access Point 1 - House"]
+        AP2["Access Point 2 - Shed"]
   end
+  style AP1 color:#000
+  style AP2 color:#000
+
     ONT@{ label: "ONT (ISP)<span class=\"grow\"></span>" } --> FG["Fortigate"]
     FG -- "192.168.2.X/24 User LAN" --- Wireless
     PXBKHA -.- PX1 & PX2
@@ -77,12 +80,19 @@ flowchart TD
     PX2 --> PX2VMs
     FG -- "192.168.0.X/24 Server LAN" --> TrueNAS
     TNmain --> TNMainVMs
-    TNmain --- TNRSync
+    TNmain --- TNZFSRep
     TNbackup --> TNBackupVMs
-    TNbackup --- TNRSync
+    TNbackup --- TNZFSRep
     ProxmoxCluster --- 10G["10.0.0.X/24 10G SFP+"]
     TrueNAS --- 10G
     FG -- "172.16.0.X/24 DMZ" --> ProxmoxCluster
+
+  style FG color:#000
+  style ONT color:#000
+  style PXBKHA color:#000
+  style PX1 color:#000
+  style PX2 color:#000
+  style 10G color:#000
 
     K3SPodList@{ shape: rect}
     PX1@{ shape: db}
@@ -97,7 +107,7 @@ flowchart TD
      PXBKHA:::storage
      TNmain:::server
      TNbackup:::server
-     TNRSync:::storage
+     TNZFSRep:::storage
      AP1:::server
      AP2:::server
      ONT:::server
@@ -119,4 +129,9 @@ flowchart TD
     linkStyle 14 stroke:#689f38,fill:none
     linkStyle 15 stroke:#689f38,fill:none
     linkStyle 16 stroke:#D50000,fill:none
+
+  style 10G color:#000
+  style TNmain color:#000
+  style TNbackup color:#000
+  style TNZFSRep color:#000
 ```
