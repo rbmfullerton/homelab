@@ -36,7 +36,7 @@ flowchart TD
         K3SPodList["Longhorn<br>Authenik<br>Rancher<br>Traefik<br>Metallb<br>Atlantis<br>Cert Manager"]
   end
  subgraph K3SCons["K3S Containers"]
-        K3SSerList["Pi-Hole1<br>Pi-Hole2<br>UpTimeKuma<br>Servarr Suite<br>Pterodactyl<br>ComfyUI<br>Ollama<br>OpwnWebUI"]
+        K3SSerList["Pi-Hole1<br>Pi-Hole2<br>UpTimeKuma<br>Servarr Suite<br>Pterodactyl<br>ComfyUI<br>Ollama<br>OpenWebUI"]
   end
  subgraph K3S["K3S Cluster"]
         K3SCons
