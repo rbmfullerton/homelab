@@ -33,10 +33,10 @@ flowchart TD
         PX2VMDMZ["Plex (ARC A380)"]
   end
  subgraph K3SSers["K3S Services"]
-        K3SPodList["Longhorn<br>Authenik<br>Traefik<br>Metallb"]
+        K3SPodList["Longhorn<br>Authenik<br>Rancher<br>Traefik<br>Metallb<br>Atlantis<br>Cert Manager"]
   end
  subgraph K3SCons["K3S Containers"]
-        K3SSerList["Pi-Hole1<br>Pi-Hole2<br>UpTimeKuma<br>Servarr Suite"]
+        K3SSerList["Pi-Hole1<br>Pi-Hole2<br>UpTimeKuma<br>Servarr Suite<br>Pterodactyl<br>ComfyUI<br>Ollama<br>OpwnWebUI"]
   end
  subgraph K3S["K3S Cluster"]
         K3SCons
@@ -51,16 +51,12 @@ flowchart TD
         PXBKHA["Proxmox Backup VM (HA)<br>iSCSI 10G"]
   end
  subgraph TNMainVMs["Containers"]
-        TNMainVM1["Pi-Hole3<br>UptimeKuma-NAS"]
-  end
- subgraph TNBackupVMs["VMs"]
-        TNBackupVM1["Proxmox QDevice"]
+        TNMainVM1["Pi-Hole3<br>UptimeKuma-NAS<br>Proxmox QDevice"]
   end
  subgraph TrueNAS["TrueNAS Hosts"]
         TNmain["TrueNAS Main - RAIDZ1"]
         TNMainVMs
         TNbackup["TrueNAS Backup - Striped"]
-        TNBackupVMs
         TNZFSRep["Hourly ZFS Replication"]
   end
  subgraph Wireless["Wireless"]
@@ -73,7 +69,7 @@ flowchart TD
     ONT@{ label: "ONT (ISP)<span class=\"grow\"></span>" } --> FG["Fortigate"]
     FG -- "192.168.2.X/24 User LAN" --- Wireless
     PXBKHA -.- PX1 & PX2
-    FG -- "192.168.2.X/24 Server LAN" --- ProxmoxCluster
+    FG -- "192.168.0.X/24 Server LAN" --- ProxmoxCluster
     PX1VMs --> K3S
     PX2VMs --> K3S
     PX1 --> PX1VMs
@@ -81,7 +77,6 @@ flowchart TD
     FG -- "192.168.0.X/24 Server LAN" --> TrueNAS
     TNmain --> TNMainVMs
     TNmain --- TNZFSRep
-    TNbackup --> TNBackupVMs
     TNbackup --- TNZFSRep
     ProxmoxCluster --- 10G["10.0.0.X/24 10G SFP+"]
     TrueNAS --- 10G
@@ -121,14 +116,13 @@ flowchart TD
     style PX2DMZ fill:transparent,stroke:#D50000
     linkStyle 1 stroke:#BBDEFB,fill:none
     linkStyle 4 stroke:#2962FF,fill:none
-    linkStyle 8 stroke:#000000,fill:none
+    linkStyle 8 stroke:#FFFFFF,fill:none
     linkStyle 9 stroke:#2962FF,fill:none
     linkStyle 11 stroke:#689f38,fill:none
-    linkStyle 12 stroke:#000000,fill:none
+    linkStyle 12 stroke:#689f38,fill:none
     linkStyle 13 stroke:#689f38,fill:none
     linkStyle 14 stroke:#689f38,fill:none
-    linkStyle 15 stroke:#689f38,fill:none
-    linkStyle 16 stroke:#D50000,fill:none
+    linkStyle 15 stroke:#D50000,fill:none
 
   style 10G color:#000
   style TNmain color:#000
