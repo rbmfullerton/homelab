@@ -64,7 +64,7 @@ resource "kubernetes_network_policy_v1" "servarr_egress_to_internal" {
     egress {
       to {
         ip_block {
-          cidr = "192.168.0.33/32"
+          cidr = "172.16.0.100/32"
         }
       }
 
